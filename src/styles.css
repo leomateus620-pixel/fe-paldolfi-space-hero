@@ -83,14 +83,16 @@
     font-style: normal;
     font-weight: 300 700;
     font-display: swap;
-    src: url("https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slCNuHLi8bLeY9MK7whWMhyjQAllvuQWJ5heb_w.woff2") format("woff2");
+    src: url("https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slCNuHLi8bLeY9MK7whWMhyjQAllvuQWJ5heb_w.woff2")
+      format("woff2");
   }
   @font-face {
     font-family: "Inter";
     font-style: normal;
     font-weight: 300 700;
     font-display: swap;
-    src: url("https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcvneQg7Ca725JhhKnOqk.woff2") format("woff2");
+    src: url("https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcvneQg7Ca725JhhKnOqk.woff2")
+      format("woff2");
   }
   * {
     border-color: var(--color-border);
@@ -101,8 +103,49 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01";
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
+  }
+}
+
+.club-bg {
+  background:
+    radial-gradient(circle at 10% 12%, rgba(255, 244, 220, 0.95), transparent 30%),
+    radial-gradient(circle at 86% 8%, rgba(215, 168, 94, 0.34), transparent 28%),
+    radial-gradient(circle at 80% 78%, rgba(185, 111, 85, 0.28), transparent 32%),
+    linear-gradient(135deg, #fbf3e8 0%, #f3dfc9 45%, #fffaf2 100%);
+  color: #3d2419;
+  position: relative;
+  overflow: hidden;
+}
+.club-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.32) 0 1px, transparent 1px 14px),
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.45), transparent 12%);
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+.glass-card {
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px auto auto 10%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+}
+@media (max-width: 720px) {
+  .club-bg h1 {
+    font-size: 3rem;
   }
 }

@@ -9,6 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReservasRouteImport } from './routes/reservas'
+import { Route as ReservarRouteImport } from './routes/reservar'
+import { Route as PlanoRouteImport } from './routes/plano'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as HistoricoRouteImport } from './routes/historico'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CheckinRouteImport } from './routes/checkin'
+import { Route as BeneficiosRouteImport } from './routes/beneficios'
+import { Route as AdminClubeRouteImport } from './routes/admin-clube'
 import { Route as RankingRouteImport } from './routes/ranking'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -17,6 +26,15 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedMinhasReservasRouteImport } from './routes/_authenticated/minhas-reservas'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
+const ReservasRoute = ReservasRouteImport.update({ id: '/reservas', path: '/reservas', getParentRoute: () => rootRouteImport } as any)
+const ReservarRoute = ReservarRouteImport.update({ id: '/reservar', path: '/reservar', getParentRoute: () => rootRouteImport } as any)
+const PlanoRoute = PlanoRouteImport.update({ id: '/plano', path: '/plano', getParentRoute: () => rootRouteImport } as any)
+const PerfilRoute = PerfilRouteImport.update({ id: '/perfil', path: '/perfil', getParentRoute: () => rootRouteImport } as any)
+const HistoricoRoute = HistoricoRouteImport.update({ id: '/historico', path: '/historico', getParentRoute: () => rootRouteImport } as any)
+const DashboardRoute = DashboardRouteImport.update({ id: '/dashboard', path: '/dashboard', getParentRoute: () => rootRouteImport } as any)
+const CheckinRoute = CheckinRouteImport.update({ id: '/checkin', path: '/checkin', getParentRoute: () => rootRouteImport } as any)
+const BeneficiosRoute = BeneficiosRouteImport.update({ id: '/beneficios', path: '/beneficios', getParentRoute: () => rootRouteImport } as any)
+const AdminClubeRoute = AdminClubeRouteImport.update({ id: '/admin-clube', path: '/admin-clube', getParentRoute: () => rootRouteImport } as any)
 const RankingRoute = RankingRouteImport.update({
   id: '/ranking',
   path: '/ranking',
@@ -55,23 +73,34 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin-clube': typeof AdminClubeRoute
+  '/beneficios': typeof BeneficiosRoute
+  '/checkin': typeof CheckinRoute
+  '/dashboard': typeof DashboardRoute
+  '/historico': typeof HistoricoRoute
+  '/perfil': typeof PerfilRoute
+  '/plano': typeof PlanoRoute
+  '/reservar': typeof ReservarRoute
+  '/reservas': typeof ReservasRoute
   '/auth': typeof AuthRoute
   '/eventos': typeof EventosRoute
   '/ranking': typeof RankingRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/minhas-reservas': typeof AuthenticatedMinhasReservasRoute
 }
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/eventos': typeof EventosRoute
-  '/ranking': typeof RankingRoute
-  '/admin': typeof AuthenticatedAdminRoute
-  '/minhas-reservas': typeof AuthenticatedMinhasReservasRoute
-}
+export interface FileRoutesByTo extends FileRoutesByFullPath {}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin-clube': typeof AdminClubeRoute
+  '/beneficios': typeof BeneficiosRoute
+  '/checkin': typeof CheckinRoute
+  '/dashboard': typeof DashboardRoute
+  '/historico': typeof HistoricoRoute
+  '/perfil': typeof PerfilRoute
+  '/plano': typeof PlanoRoute
+  '/reservar': typeof ReservarRoute
+  '/reservas': typeof ReservasRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/eventos': typeof EventosRoute
@@ -83,16 +112,34 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin-clube'
+    | '/beneficios'
+    | '/checkin'
+    | '/dashboard'
+    | '/historico'
+    | '/perfil'
+    | '/plano'
+    | '/reservar'
+    | '/reservas'
     | '/auth'
     | '/eventos'
     | '/ranking'
     | '/admin'
     | '/minhas-reservas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/eventos' | '/ranking' | '/admin' | '/minhas-reservas'
+  to: '/' | '/admin-clube' | '/auth' | '/beneficios' | '/checkin' | '/dashboard' | '/eventos' | '/historico' | '/perfil' | '/plano' | '/ranking' | '/reservar' | '/reservas' | '/admin' | '/minhas-reservas'
   id:
     | '__root__'
     | '/'
+    | '/admin-clube'
+    | '/beneficios'
+    | '/checkin'
+    | '/dashboard'
+    | '/historico'
+    | '/perfil'
+    | '/plano'
+    | '/reservar'
+    | '/reservas'
     | '/_authenticated'
     | '/auth'
     | '/eventos'
@@ -104,6 +151,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AdminClubeRoute: typeof AdminClubeRoute
+  BeneficiosRoute: typeof BeneficiosRoute
+  CheckinRoute: typeof CheckinRoute
+  DashboardRoute: typeof DashboardRoute
+  HistoricoRoute: typeof HistoricoRoute
+  PerfilRoute: typeof PerfilRoute
+  PlanoRoute: typeof PlanoRoute
+  ReservarRoute: typeof ReservarRoute
+  ReservasRoute: typeof ReservasRoute
   AuthRoute: typeof AuthRoute
   EventosRoute: typeof EventosRoute
   RankingRoute: typeof RankingRoute
@@ -111,6 +167,15 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/admin-clube': { id: '/admin-clube'; path: '/admin-clube'; fullPath: '/admin-clube'; preLoaderRoute: typeof AdminClubeRouteImport; parentRoute: typeof rootRouteImport }
+    '/beneficios': { id: '/beneficios'; path: '/beneficios'; fullPath: '/beneficios'; preLoaderRoute: typeof BeneficiosRouteImport; parentRoute: typeof rootRouteImport }
+    '/checkin': { id: '/checkin'; path: '/checkin'; fullPath: '/checkin'; preLoaderRoute: typeof CheckinRouteImport; parentRoute: typeof rootRouteImport }
+    '/dashboard': { id: '/dashboard'; path: '/dashboard'; fullPath: '/dashboard'; preLoaderRoute: typeof DashboardRouteImport; parentRoute: typeof rootRouteImport }
+    '/historico': { id: '/historico'; path: '/historico'; fullPath: '/historico'; preLoaderRoute: typeof HistoricoRouteImport; parentRoute: typeof rootRouteImport }
+    '/perfil': { id: '/perfil'; path: '/perfil'; fullPath: '/perfil'; preLoaderRoute: typeof PerfilRouteImport; parentRoute: typeof rootRouteImport }
+    '/plano': { id: '/plano'; path: '/plano'; fullPath: '/plano'; preLoaderRoute: typeof PlanoRouteImport; parentRoute: typeof rootRouteImport }
+    '/reservar': { id: '/reservar'; path: '/reservar'; fullPath: '/reservar'; preLoaderRoute: typeof ReservarRouteImport; parentRoute: typeof rootRouteImport }
+    '/reservas': { id: '/reservas'; path: '/reservas'; fullPath: '/reservas'; preLoaderRoute: typeof ReservasRouteImport; parentRoute: typeof rootRouteImport }
     '/ranking': {
       id: '/ranking'
       path: '/ranking'
@@ -179,6 +244,15 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AdminClubeRoute: AdminClubeRoute,
+  BeneficiosRoute: BeneficiosRoute,
+  CheckinRoute: CheckinRoute,
+  DashboardRoute: DashboardRoute,
+  HistoricoRoute: HistoricoRoute,
+  PerfilRoute: PerfilRoute,
+  PlanoRoute: PlanoRoute,
+  ReservarRoute: ReservarRoute,
+  ReservasRoute: ReservasRoute,
   AuthRoute: AuthRoute,
   EventosRoute: EventosRoute,
   RankingRoute: RankingRoute,
