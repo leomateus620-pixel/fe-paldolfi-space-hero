@@ -20,7 +20,9 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <h1 className="font-serif text-7xl">404</h1>
         <p className="mt-4 text-muted-foreground">Página não encontrada.</p>
-        <a href="/" className="mt-6 inline-block text-primary underline">Voltar ao início</a>
+        <a href="/" className="mt-6 inline-block text-primary underline">
+          Voltar ao início
+        </a>
       </div>
     </div>
   );
@@ -38,7 +40,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
         <button
           className="mt-6 rounded bg-primary px-4 py-2 text-primary-foreground text-sm"
-          onClick={() => { router.invalidate(); reset(); }}
+          onClick={() => {
+            router.invalidate();
+            reset();
+          }}
         >
           Tentar novamente
         </button>
@@ -52,8 +57,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Fe Paldolfi — Reserve seu lugar" },
-      { name: "description", content: "Reserve sua vaga nos eventos e workshops exclusivos da Fe Paldolfi." },
+      { title: "Clube Fê Pandolfi — Ritual de leitura" },
+      {
+        name: "description",
+        content:
+          "Reserve seu espaço, acompanhe seu plano, faça check-in e participe do ranking anual de leitoras.",
+      },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
@@ -66,8 +75,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
-      <head><HeadContent /></head>
-      <body>{children}<Scripts /></body>
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
     </html>
   );
 }
@@ -92,9 +106,11 @@ function RootComponent() {
       <AuthListener />
       <div className="min-h-screen flex flex-col">
         <SiteHeader />
-        <main className="flex-1"><Outlet /></main>
+        <main className="flex-1">
+          <Outlet />
+        </main>
         <footer className="border-t border-border/60 py-8 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Fe Paldolfi
+          © {new Date().getFullYear()} Clube Fê Pandolfi · Charlie Brownie
         </footer>
       </div>
       <Toaster />
