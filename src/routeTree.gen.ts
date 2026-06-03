@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedMinhasReservasRouteImport } from './routes/_authenticated/minhas-reservas'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
 const RankingRoute = RankingRouteImport.update({
   id: '/ranking',
@@ -46,12 +47,18 @@ const AuthenticatedMinhasReservasRoute =
     path: '/minhas-reservas',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/eventos': typeof EventosRoute
   '/ranking': typeof RankingRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/minhas-reservas': typeof AuthenticatedMinhasReservasRoute
 }
 export interface FileRoutesByTo {
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/eventos': typeof EventosRoute
   '/ranking': typeof RankingRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/minhas-reservas': typeof AuthenticatedMinhasReservasRoute
 }
 export interface FileRoutesById {
@@ -68,13 +76,20 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/eventos': typeof EventosRoute
   '/ranking': typeof RankingRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/minhas-reservas': typeof AuthenticatedMinhasReservasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/eventos' | '/ranking' | '/minhas-reservas'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/eventos'
+    | '/ranking'
+    | '/admin'
+    | '/minhas-reservas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/eventos' | '/ranking' | '/minhas-reservas'
+  to: '/' | '/auth' | '/eventos' | '/ranking' | '/admin' | '/minhas-reservas'
   id:
     | '__root__'
     | '/'
@@ -82,6 +97,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/eventos'
     | '/ranking'
+    | '/_authenticated/admin'
     | '/_authenticated/minhas-reservas'
   fileRoutesById: FileRoutesById
 }
@@ -137,14 +153,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMinhasReservasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedMinhasReservasRoute: typeof AuthenticatedMinhasReservasRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedMinhasReservasRoute: AuthenticatedMinhasReservasRoute,
 }
 
